@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_002333) do
+ActiveRecord::Schema.define(version: 2020_01_18_002845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "component_recipes", force: :cascade do |t|
+    t.string "component"
+    t.string "name"
+    t.text "description"
+    t.text "ingredients"
+    t.text "directions"
+    t.bigint "user_id"
+    t.bigint "ramen_recipes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ramen_recipes_id"], name: "index_component_recipes_on_ramen_recipes_id"
+    t.index ["user_id"], name: "index_component_recipes_on_user_id"
+  end
+
+  create_table "ramen_recipes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "type"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ramen_recipes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +51,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_002333) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "component_recipes", "ramen_recipes", column: "ramen_recipes_id"
+  add_foreign_key "component_recipes", "users"
+  add_foreign_key "ramen_recipes", "users"
 end
