@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_025811) do
+ActiveRecord::Schema.define(version: 2020_01_19_024838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,9 @@ ActiveRecord::Schema.define(version: 2020_01_18_025811) do
     t.index ["user_id"], name: "index_component_recipes_on_user_id"
   end
 
-  create_table "ramen_component_join", force: :cascade do |t|
-    t.bigint "component_recipes_id"
-    t.bigint "ramen_recipes_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["component_recipes_id"], name: "index_ramen_component_join_on_component_recipes_id"
-    t.index ["ramen_recipes_id"], name: "index_ramen_component_join_on_ramen_recipes_id"
+  create_table "component_recipes_ramen_recipes", id: false, force: :cascade do |t|
+    t.bigint "component_recipe_id", null: false
+    t.bigint "ramen_recipe_id", null: false
   end
 
   create_table "ramen_recipes", force: :cascade do |t|
@@ -62,7 +58,5 @@ ActiveRecord::Schema.define(version: 2020_01_18_025811) do
   end
 
   add_foreign_key "component_recipes", "users"
-  add_foreign_key "ramen_component_join", "component_recipes", column: "component_recipes_id"
-  add_foreign_key "ramen_component_join", "ramen_recipes", column: "ramen_recipes_id"
   add_foreign_key "ramen_recipes", "users"
 end
