@@ -6,7 +6,7 @@ ComponentRecipe.destroy_all
 # puts "Creating user seeds."
 # User.create!(email: "user@user.com", password: "123456")
 # puts "Seeding Finished."
-puts "Seeding the ramen recipe DB"
+# puts "Seeding the ramen recipe DB"
 mushroom_ramen = RamenRecipe.create!(
   {
   name: "Mushroom Truffle Shoyu Ramen",
