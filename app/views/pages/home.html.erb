@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <h1>Discover Ramen</h1>
+  <p>CTA to search or create recipes</p>
+  <%= link_to "index", ramen_recipes_path%>
+  <%= link_to "create", new_ramen_recipe_path%>
+</div>

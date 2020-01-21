@@ -1,0 +1,20 @@
+<h1><%= @ramen_recipe.name %></h1>
+<div class="info">
+  <%= @ramen_recipe.ramen_type %>
+  <%= @ramen_recipe.user_id %>
+  <%= @ramen_recipe.created_at %>
+</div>
+
+<div class="instructions">
+  <h2>Description</h2>
+  <p> <%= @ramen_recipe.description %></p>
+  <% @ramen_recipe.component_recipes.each do |component| %>
+  <p><%= component.component %></p>
+  <p><%= component.name %></p>
+  <p><%= component.description %></p>
+  <p><%= component.ingredients %></p>
+  <p><%= component.directions %></p>
+  <p><%= component.user_id %></p>
+  <% end %>
+  <p><%= @ramen_recipe.assembly %><p>
+</div>

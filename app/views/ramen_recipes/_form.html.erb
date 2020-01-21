@@ -1,0 +1,10 @@
+<%=  simple_form_for(ramen_recipe) do |f| %>
+  <div class="d-flex">
+    <%=  f.input :name, wrapper_html: {class: "margin-r"}%>
+    <%=  f.input :ramen_type, collection: ["Shio", "Shoyu", "Miso", "Tonkotsu"], wrapper_html: {class: "margin-l"}%>
+  </div>
+  <%=  f.input :description %>
+  <%=  f.input :assembly %>
+  <%=  f.input :image %>
+  <%= f.submit "Create Recipe",  class: "yellow-btn" %>
+<% end %>
