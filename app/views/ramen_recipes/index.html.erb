@@ -1,17 +1,27 @@
 <div class="container">
-  <% unless @ramen_recipes.empty? %>
+  <% unless @recipes.empty? %>
     <p>Ramen Recipes<p>
   <% else %>
     <p>There aren't any recipes here.</p>
   <% end %>
 
   <div class="recipe-container">
-    <% @ramen_recipes.each do |recipe| %>
-      <li>
-        <%= link_to recipe.name, ramen_recipe_path(recipe) %>
-        <%= link_to "edit", edit_ramen_recipe_path(recipe)%>
-        <%= link_to "delete", ramen_recipe_path(recipe), method: :delete%>
-      </li>
+    <% @recipes.each do |recipe| %>
+      <% if recipe.is_a?(RamenRecipe) %>
+        <li>
+          <%= link_to recipe.name, ramen_recipe_path(recipe) %>
+          <%= link_to "edit", edit_ramen_recipe_path(recipe)%>
+          <%= link_to "delete", ramen_recipe_path(recipe), method: :delete%>
+        </li>
+      <% elsif recipe.is_a?(ComponentRecipe) %>
+        <li>
+          <%= link_to "#{recipe.name} #{recipe.component}", component_recipe_path(recipe) %>
+          <%= link_to "edit", edit_component_recipe_path(recipe)%>
+          <%= link_to "delete", component_recipe_path(recipe), method: :delete%>
+        </li>
+      <% else %>
+        <% next %>
+      <% end %>
     <% end %>
   </div>
 

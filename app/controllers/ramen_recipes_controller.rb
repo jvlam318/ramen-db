@@ -3,7 +3,7 @@ class RamenRecipesController < ApplicationController
   before_action :set_ramen_recipe, only: %i[show edit update destroy]
 
   def index
-    @ramen_recipes = RamenRecipe.all
+    @recipes = RamenRecipe.all + ComponentRecipe.all
   end
 
   def show
